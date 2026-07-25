@@ -1,0 +1,667 @@
+/* Official Document Styles - Formato Único Hoja de Vida Persona Natural (DAFP) */
+
+:root {
+  --doc-bg-tint: #ecf5f9;           /* Soft Light Blue Tint for Document Boxes & Inputs */
+  --doc-header-bg: #b9dbe8;         /* Aquamarine Darker Blue for Table Headers */
+  --doc-subheader-bg: #cfebf5;      /* Aquamarine Medium Blue for Subheaders */
+  --doc-accent-blue: #0090c0;       /* Accent Cyan Blue for Section Dashes */
+  --doc-border-color: #000000;      /* Standard Crisp Black Borders */
+  --doc-hover-blue: rgba(56, 189, 248, 0.15);
+  --doc-focus-blue: rgba(56, 189, 248, 0.25);
+}
+
+@media print {
+  @page {
+    margin: 0 !important;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html,
+  body,
+  #root,
+  .app-wrapper,
+  .main-workspace,
+  .doc-zoom-wrapper,
+  .doc-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    zoom: 1 !important;
+    transform: none !important;
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    gap: 0 !important;
+  }
+  .no-print,
+  .inline-doc-action,
+  .live-input-hint,
+  .editor-only-ui,
+  .app-header {
+    display: none !important;
+  }
+  .cv-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    padding: 10mm 10mm 4mm 10mm !important;
+    box-sizing: border-box !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+    font-family: 'Arimo', 'Carlito', Arial, sans-serif !important;
+  }
+  .cv-page:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-after: unset !important;
+    break-after: unset !important;
+  }
+
+  /* Force background colors and crisp black borders during print */
+  table,
+  th,
+  td {
+    border-color: #000000 !important;
+  }
+
+  .bg-doc-tint,
+  .doc-section-box,
+  .doc-emp-flex-row,
+  .doc-instruction-text,
+  .doc-circle,
+  .doc-box-check,
+  .doc-checkbox-square,
+  .doc-date-input,
+  .doc-signature-box {
+    background-color: var(--doc-bg-tint) !important;
+  }
+
+  .bg-doc-header,
+  .doc-table th,
+  .doc-emp-block-header {
+    background-color: var(--doc-header-bg) !important;
+  }
+
+  .bg-doc-subheader {
+    background-color: var(--doc-subheader-bg) !important;
+  }
+
+  .doc-section-dash {
+    background-color: var(--doc-accent-blue) !important;
+  }
+
+  .doc-section-num {
+    background-color: var(--doc-border-color) !important;
+    color: #ffffff !important;
+  }
+  .live-doc-input,
+  .live-doc-select,
+  .live-doc-textarea,
+  .doc-date-input {
+    border: none !important;
+    background: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    font-family: 'Arimo', 'Carlito', Arial, sans-serif !important;
+  }
+}
+
+/* Hide WebKit and Firefox number input spinner arrows */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
+}
+
+/* Screen Zoom Wrapper */
+.doc-zoom-wrapper {
+  zoom: var(--doc-zoom, 1.5);
+  width: 100%;
+}
+
+/* Utility Background Classes */
+.bg-doc-tint {
+  background-color: var(--doc-bg-tint) !important;
+}
+
+.bg-doc-header {
+  background-color: var(--doc-header-bg) !important;
+}
+
+.bg-doc-subheader {
+  background-color: var(--doc-subheader-bg) !important;
+}
+
+/* Screen Live Document Container */
+.doc-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 1rem 4rem 1rem;
+  width: 100%;
+}
+
+/* Screen Document Paper Sheet */
+.cv-page {
+  width: 215.9mm;
+  min-height: 279.4mm;
+  background: #ffffff;
+  color: #111111;
+  font-family: 'Arimo', 'Carlito', Arial, Helvetica, sans-serif;
+  padding: 12mm 14mm;
+  box-sizing: border-box;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  font-size: 8.5pt;
+  line-height: 1.25;
+  border-radius: 3px;
+}
+
+/* Top Header Box (Rounded Box with Thick Drop Shadow Border) */
+.doc-header-border-box {
+  border: 1.5px solid var(--doc-border-color);
+  border-right: 4px solid var(--doc-border-color);
+  border-bottom: 4px solid var(--doc-border-color);
+  border-radius: 16px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.doc-header-left {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.doc-header-logo {
+  height: 38px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+}
+
+.doc-header-titles {
+  text-align: center;
+  flex: 1;
+}
+
+.doc-header-titles h1 {
+  font-size: 13pt;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.doc-header-titles h2 {
+  font-size: 14pt;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.doc-header-titles p {
+  font-size: 8.5pt;
+  margin: 0;
+  font-weight: bold;
+}
+
+.doc-header-subtitle {
+  font-size: 7.5pt;
+  font-style: italic;
+  margin-top: 1px;
+}
+
+.doc-header-entidad {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.doc-header-entidad-box {
+  border: 1.5px solid var(--doc-border-color);
+  border-right: 3px solid var(--doc-border-color);
+  border-bottom: 3px solid var(--doc-border-color);
+  border-radius: 8px;
+  padding: 2px 4px;
+  width: 140px;
+  height: 28px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+/* Section Title Pill Badges */
+.doc-section-badge {
+  display: flex;
+  align-items: center;
+  margin: 12px 0 6px 0;
+}
+
+.doc-section-num {
+  background: var(--doc-border-color);
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 10pt;
+  z-index: 2;
+  font-family: 'Arimo', Arial, sans-serif;
+}
+
+.doc-section-dash {
+  width: 9px;
+  height: 4px;
+  background: var(--doc-accent-blue);
+  margin: 0 1px;
+}
+
+.doc-section-title {
+  background: var(--doc-border-color);
+  color: #fff;
+  padding: 3px 18px 3px 12px;
+  border-radius: 12px;
+  font-size: 9.5pt;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  font-family: 'Arimo', Arial, sans-serif;
+}
+
+/* Custom Rounded Tables with Guaranteed Print Borders */
+.doc-custom-table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid #000000 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  background-color: var(--doc-bg-tint);
+}
+
+.doc-custom-table th,
+.doc-custom-table td {
+  border-right: 1px solid #000000 !important;
+  border-bottom: 1px solid #000000 !important;
+  box-sizing: border-box !important;
+}
+
+.doc-custom-table tr:last-child td,
+.doc-custom-table tr:last-child th {
+  border-bottom: none !important;
+}
+
+.doc-custom-table tr td:last-child,
+.doc-custom-table tr th:last-child {
+  border-right: none !important;
+}
+
+@media print {
+  .doc-custom-table,
+  .doc-custom-table th,
+  .doc-custom-table td {
+    border-color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* Outer Section Boxes with Thick Right/Bottom Border & Soft Light Blue Tint */
+.doc-section-box {
+  border: 1.5px solid var(--doc-border-color);
+  border-right: 4px solid var(--doc-border-color);
+  border-bottom: 4px solid var(--doc-border-color);
+  margin-bottom: 10px;
+  background-color: var(--doc-bg-tint);
+}
+
+/* Tables & Grids */
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1.5px solid var(--doc-border-color);
+  border-right: 4px solid var(--doc-border-color);
+  border-bottom: 4px solid var(--doc-border-color);
+  margin-bottom: 10px;
+  font-family: 'Arimo', 'Carlito', Arial, sans-serif;
+  table-layout: fixed;
+  background-color: var(--doc-bg-tint);
+}
+
+.doc-table td,
+.doc-table th {
+  border: 1px solid var(--doc-border-color);
+  padding: 2px 4px;
+  vertical-align: top;
+  position: relative;
+}
+
+.doc-table td {
+  background-color: var(--doc-bg-tint);
+}
+
+.doc-table th {
+  background-color: var(--doc-header-bg);
+  font-weight: bold;
+  font-size: 7.5pt;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: 'Arimo', Arial, sans-serif;
+}
+
+.doc-label {
+  font-size: 6.5pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #111;
+  display: block;
+  margin-bottom: 1px;
+  font-family: 'Arimo', Arial, sans-serif;
+}
+
+/* LIVE INLINE INPUT STYLES (Interactive Document) */
+.live-doc-input,
+.live-doc-select,
+.live-doc-textarea {
+  width: 100%;
+  border: none;
+  background-color: var(--doc-bg-tint);
+  font-family: 'Arimo', 'Carlito', Arial, sans-serif;
+  font-size: 8.5pt;
+  font-weight: bold;
+  color: #000;
+  padding: 1px 2px;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+
+.live-doc-input:hover,
+.live-doc-select:hover,
+.live-doc-textarea:hover {
+  background-color: var(--doc-hover-blue);
+}
+
+.live-doc-input:focus,
+.live-doc-select:focus,
+.live-doc-textarea:focus {
+  outline: none;
+  background-color: var(--doc-focus-blue);
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.3);
+}
+
+.live-doc-input::placeholder,
+.live-doc-textarea::placeholder {
+  color: transparent;
+}
+
+.live-doc-input-center {
+  text-align: center;
+  text-align-last: center;
+}
+
+.live-doc-underline {
+  border-bottom: 1px solid var(--doc-border-color) !important;
+  border-radius: 0 !important;
+}
+
+/* Checkbox & Radio Indicators */
+.doc-radio {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+  font-size: 7.5pt;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: background 0.15s ease;
+  font-family: 'Arimo', Arial, sans-serif;
+}
+
+.doc-radio:hover {
+  background-color: var(--doc-hover-blue);
+}
+
+.doc-circle {
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  min-height: 12px;
+  border: 1.3px solid var(--doc-border-color);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--doc-bg-tint);
+  box-sizing: border-box;
+  margin-left: 2px;
+  position: relative;
+}
+
+.doc-circle.checked::after {
+  content: '';
+  width: 5.5px;
+  height: 5.5px;
+  background: var(--doc-border-color);
+  border-radius: 50%;
+  display: block;
+}
+
+.doc-box-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--doc-border-color);
+  background-color: var(--doc-bg-tint);
+  font-size: 7.5pt;
+  font-weight: bold;
+  margin-left: 2px;
+  line-height: 1;
+}
+
+/* Generic Square Checkbox Element */
+.doc-checkbox-square {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 13px;
+  height: 13px;
+  border: 1px solid var(--doc-border-color);
+  background-color: var(--doc-bg-tint);
+  font-size: 8pt;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Segmented Date Box Container */
+.doc-date-boxes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  vertical-align: middle;
+}
+
+.doc-date-input {
+  width: 13px;
+  height: 15px;
+  min-width: 13px;
+  min-height: 15px;
+  border: 1px solid var(--doc-border-color);
+  border-radius: 0;
+  text-align: center;
+  font-size: 7.5pt;
+  font-weight: bold;
+  color: #000000;
+  padding: 0;
+  margin: 0 -1px 0 0;
+  background-color: var(--doc-bg-tint);
+  box-sizing: border-box;
+  font-family: 'Arimo', Arial, sans-serif;
+  line-height: 13px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  box-shadow: none;
+  position: relative;
+  z-index: 1;
+}
+
+.doc-date-input:last-child {
+  margin-right: 0;
+}
+
+.doc-date-input:focus {
+  background-color: #e0f2fe;
+  border-color: #0284c7;
+  outline: none;
+  z-index: 2;
+}
+
+.doc-instruction-text {
+  font-size: 6.5pt;
+  font-weight: normal;
+  padding: 3px 5px;
+  background-color: var(--doc-bg-tint);
+  border-bottom: 1px solid var(--doc-border-color);
+  font-family: 'Arimo', Arial, sans-serif;
+}
+
+/* Employment Block Row & Column Layout Classes */
+.doc-emp-block-header {
+  background-color: var(--doc-header-bg);
+  border-bottom: 1px solid var(--doc-border-color);
+  text-align: center;
+  font-style: italic;
+  padding: 2px;
+  font-size: 7.5pt;
+  font-weight: bold;
+}
+
+.doc-emp-flex-row {
+  display: flex;
+  border-bottom: 1px solid var(--doc-border-color);
+  background-color: var(--doc-bg-tint);
+}
+
+.doc-emp-flex-row:last-child {
+  border-bottom: none;
+}
+
+.doc-emp-col {
+  border-right: 1px solid var(--doc-border-color);
+  padding: 0;
+}
+
+.doc-emp-col:last-child {
+  border-right: none;
+}
+
+/* Signature & Document Footer */
+.doc-signature-box {
+  border: 1px dashed var(--doc-border-color);
+  border-radius: 6px;
+  padding: 8px;
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--doc-bg-tint);
+  transition: all 0.15s ease;
+}
+
+.doc-signature-box:hover {
+  background-color: var(--doc-hover-blue);
+  border-color: #0284c7;
+}
+
+.doc-signature-img {
+  max-height: 48px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.doc-signature-text {
+  font-family: 'Dancing Script', 'Caveat', 'Brush Script MT', cursive;
+  font-size: 20pt;
+  color: #0b192c;
+  line-height: 1;
+}
+
+.doc-footer-page {
+  position: absolute;
+  bottom: 8mm;
+  left: 14mm;
+  right: 14mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 6.5pt;
+  border-top: 1px solid var(--doc-border-color);
+  padding-top: 4px;
+}
+
+.doc-footer-info {
+  font-size: 6.5pt;
+  font-weight: bold;
+  letter-spacing: 0.2px;
+}
+
+/* Button & Action Bar Helpers */
+.inline-doc-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 7.5pt;
+  font-weight: bold;
+  color: #0284c7;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.inline-doc-action:hover {
+  background: #e0f2fe;
+  color: #0369a1;
+}

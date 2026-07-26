@@ -286,7 +286,7 @@ export const DocumentView: React.FC<Props> = ({ data, onChange }) => {
         {/* Header Box */}
         <div className="doc-header-border-box">
           <div className="doc-header-left">
-            <img src="/Logo_Gobierno_de_Colombia.svg" alt="Gobierno de Colombia" className="doc-header-logo" />
+            <img src={`${import.meta.env.BASE_URL}Logo_Gobierno_de_Colombia.svg`} alt="Gobierno de Colombia" className="doc-header-logo" />
             <div style={{ fontSize: '6.5pt', fontWeight: 'bold', lineHeight: '1.1', textAlign: 'center', marginTop: '2px' }}>
               Libertad y Orden
             </div>

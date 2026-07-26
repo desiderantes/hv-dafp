@@ -56,7 +56,7 @@ export const Header: React.FC<Props> = ({
   return (
     <header className="app-header no-print">
       <div className="brand">
-        <img src="/escudo_colombia.svg" alt="Escudo de Colombia" className="brand-logo" />
+        <img src={`${import.meta.env.BASE_URL}escudo_colombia.svg`} alt="Escudo de Colombia" className="brand-logo" />
         <div>
           <div className="brand-title">Formato Único Hoja de Vida</div>
           <div className="brand-subtitle">Persona Natural (DAFP Colombia)</div>
